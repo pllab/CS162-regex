@@ -26,10 +26,7 @@ The repo includes the following:
 
 The rich builder library allows the user to define regular expressions in a more natural and convenient way. For example, instead of writing `Concatenate(Union(re1, re2), re3)`, we will be able to write `(re1 ~ re2) | re3`.
 
-Aside from just constructing regular expressions, the rich builder class also needs to implement simplifications over regular expressions (much like you did in the first assignment). The idea behind this is twofold:
-
-  - we want a normalized representation of regexes, ie. `(re1 | re2) | re3` should simplify to `re1 | (re2 | re3)`
-  - we want to evaluate constant operations immediately, ie. `ε ~ re1` can be simplified to `re1`.
+Aside from just constructing regular expressions, the rich builder class also needs to implement simplifications over regular expressions (much like you did in the first assignment).
 
 Below is a list of operations you need to implement, accompanied by the description of simplifications for each operation. For each operation, you will attempt to perform a simplification first, if applicable.
 
