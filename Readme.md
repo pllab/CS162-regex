@@ -2,8 +2,7 @@
 
 ## Deadline: October 25, 11:59PM
 
-This week in class we learned how to parse with derivatives, and went in detail through a simple recursive implementation. 
-We also talked about taking a different approach and implementing a stack-based virtual machine for computing derivatives.
+This week in class we learned how to do string recognition with derivatives, and went in detail through a simple recursive implementation. We also talked about taking a different approach and implementing a stack-based virtual machine for computing derivatives.
 
 In this assignment, you will be implementing:
   - Convenient regex builder class using the "pimp my library" pattern, with regex simplifications
