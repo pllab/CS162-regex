@@ -99,9 +99,9 @@ You need to implement the virtual machine for computing derivatives, as talked a
   1. `run` method which executes a given program (sequence of
        instructions), and returns the top of the final operand stack.
   2. `derive` method which returns the derivative of the regular expression by calling run with `PushDerive` and the given character.
-  3. `eval` method which checks if `re` recognizes `str` by taking successively deriving it.
+  3. `eval` method which checks if `re` recognizes `str` by taking successive derivations.
 
-Use the recursive implementation as a guide, your implementation should do exactly the same thing.
+Use the recursive implementation as a guide, your implementation should do exactly the same thing but be tail recursive.
 
 ## Part 3: Tests
 
