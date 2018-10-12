@@ -1,6 +1,6 @@
 # Assignment 2
 
-## Deadline: October 23, 11:59PM
+## Deadline: October 25, 11:59PM
 
 This week in class we learned how to parse with derivatives, and went in detail through a simple recursive implementation. 
 We also talked about taking a different approach and implementing a stack-based virtual machine for computing derivatives.
