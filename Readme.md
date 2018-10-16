@@ -1,9 +1,8 @@
 # Assignment 2
 
-## Deadline: 18th Oct, 11:59PM
+## Deadline: October 25, 11:59PM
 
-This week in class we learned how to parse with derivatives, and went in detail through a simple recursive implementation. 
-We also talked about taking a different approach and implementing a stack-based virtual machine for computing derivatives.
+This week in class we learned how to do string recognition with derivatives, and went in detail through a simple recursive implementation. We also talked about taking a different approach and implementing a stack-based virtual machine for computing derivatives.
 
 In this assignment, you will be implementing:
   - Convenient regex builder class using the "pimp my library" pattern, with regex simplifications
@@ -27,10 +26,7 @@ The repo includes the following:
 
 The rich builder library allows the user to define regular expressions in a more natural and convenient way. For example, instead of writing `Concatenate(Union(re1, re2), re3)`, we will be able to write `(re1 ~ re2) | re3`.
 
-Aside from just constructing regular expressions, the rich builder class also needs to implement simplifications over regular expressions (much like you did in the first assignment). The idea behind this is twofold:
-
-  - we want a normalized representation of regexes, ie. `(re1 | re2) | re3` should simplify to `re1 | (re2 | re3)`
-  - we want to evaluate constant operations immediately, ie. `ε ~ re1` can be simplified to `re1`.
+Aside from just constructing regular expressions, the rich builder class also needs to implement simplifications over regular expressions (much like you did in the first assignment).
 
 Below is a list of operations you need to implement, accompanied by the description of simplifications for each operation. For each operation, you will attempt to perform a simplification first, if applicable.
 
@@ -112,9 +108,9 @@ You need to implement the virtual machine for computing derivatives, as talked a
   1. `run` method which executes a given program (sequence of
        instructions), and returns the top of the final operand stack.
   2. `derive` method which returns the derivative of the regular expression by calling run with `PushDerive` and the given character.
-  3. `eval` method which checks if `re` recognizes `str` by taking successively deriving it.
+  3. `eval` method which checks if `re` recognizes `str` by taking successive derivations.
 
-Use the recursive implementation as a guide, your implementation should do exactly the same thing.
+Use the recursive implementation as a guide, your implementation should do exactly the same thing but be tail recursive.
 
 ## Part 3: Tests
 
