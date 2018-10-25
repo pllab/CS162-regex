@@ -85,7 +85,7 @@ Simplifications:
 
   - `!∅ => α*`
   - `!ε => α+`
-  - `!(!r) => !r`
+  - `!(!r) => r`
 
 The other methods do not require simplifications.
 
