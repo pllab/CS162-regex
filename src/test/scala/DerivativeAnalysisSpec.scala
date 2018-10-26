@@ -2,6 +2,7 @@ package edu.ucsb.cs.cs162.regex.derivative
 
 import org.scalatest._
 import edu.ucsb.cs.cs162.regex._
+import edu.ucsb.cs.cs162.util._
 
 class DerivativeAnalysisSpec extends FlatSpec with Matchers with Timeout {
   //----------------------------------------------------------------------------
@@ -15,7 +16,7 @@ class DerivativeAnalysisSpec extends FlatSpec with Matchers with Timeout {
 
   // Analyze the given expression subject to a timeout.
   def analyzeWithTimeout(re: Regex) =
-    timeoutAfter(timeout) { analyze(re) }
+    timeoutAfter(timeout) { DerivativeAnalysis.analyze(re) }
 
   //----------------------------------------------------------------------------
   // Tests.
