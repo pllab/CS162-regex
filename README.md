@@ -2,10 +2,10 @@
 
 ## Deadline: November 6, 11:59PM
 
-We defined a static analysis to summarize the different results
-derivation of a regular expression produces in class. We also talked
+In class, we defined a static analysis to summarize the different results
+derivation of a regular expression produces. We also talked
 about how to use it to convert a regular expression to a DFA. In this
-assignment, you will implement:
+assignment, you will:
 
  - Integrate the simplifications you implemented in previous
    assignment into the convenience methods we provide that normalize a
@@ -92,7 +92,8 @@ C(r & s) = C(r) ∧ C(s)
 C(r ~ s) = C(r) if !r.nullable, else C(r) ∧ C(s)
 ```
 
-where `∧` binary operator on sets of character sets is defined as:
+where `∧` binary operator is pairwise union on sets of character sets.
+It is defined as:
 
 ```
 P ∧ Q = { S ∩ T | S ∈ P, T ∈ Q }
