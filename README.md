@@ -123,6 +123,11 @@ need to test:
    resulting DFA to and these tests should go into the skeleton code
    we gave you in `DerivativeAnalysisSpec.scala`
 
+You can keep the tests you wrote for the previous assignment but you
+will not be graded on those for this assignment. For grading purposes,
+we will consider only the tests in `RegexSpec.scala` and
+`DerivativeAnalysisSpec.scala`.
+
 ## Rules
 
 You must use only the purely functional subset of Scala. This means
