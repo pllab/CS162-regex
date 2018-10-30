@@ -75,6 +75,7 @@ case class Union(a: Regex, b: Regex) extends Regex
 case class KleeneStar(a: Regex) extends Regex
 case class Complement(a: Regex) extends Regex
 case class Intersect(a: Regex, b: Regex) extends Regex
+case class Capture(name: String, a: Regex) extends Regex
 
 // Convenient constructors for character set expressions.
 object Chars {

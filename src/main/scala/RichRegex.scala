@@ -93,6 +93,10 @@ object `package` {
     // Shorthand for at least 'min' but at most 'max' repetitions of re regex.
     def <>(min: Int, max: Int): Regex = ???
 
+    // Place the regex inside a capture group with the given name.
+    def capture(name: String): Regex =
+      Capture(name, re)
+
     //----------------------------------------------------------------------------
     // Private details.
     //----------------------------------------------------------------------------
