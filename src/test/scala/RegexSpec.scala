@@ -9,9 +9,12 @@ class RegexSpec extends FlatSpec with Matchers {
 
   import Regex._
 
+  val charA = Chars('a')
   val b = Chars('b')
   val c = Chars('c')
   val d = Chars('d')
+  val e = Chars('e')
+  val f = Chars('f')
 
   val r = Chars('a') | Chars('b').+
   val r1 = Chars('x', 'y').* ~ r
@@ -143,6 +146,25 @@ class RegexSpec extends FlatSpec with Matchers {
     (b.? | (c >= 1)).prettyPrint should equal (s"""Union\n├─ Union\n│  ├─ ε\n│  └─ b\n└─ Concatenate\n   ├─ c\n   └─ KleeneStar\n      └─ c\n""")
   }
 
+  it should "normalize correctly 1" in {
+    val re = ((charA ~ b) ~ (c ~ d)) ~ (e ~ f)
+
+    val norm = Concatenate(charA, Concatenate(b, Concatenate(c,
+      Concatenate(d, Concatenate(e, f)))))
+
+    re should equal (norm)
+  }
+
+  it should "normalize correctly 2" in {
+    val re = (((b | ε) & charA) | !charA | charA.*) | ((charA ~ b) |
+      charA | ε)
+
+    val norm = Union(ε, Union(charA, Union(Concatenate(charA, b),
+      Union(KleeneStar(charA), Union(Complement(charA), Intersect(charA,
+        Union(ε, b)))))))
+
+    re should equal (norm)
+  }
 
   behavior of "nullable"
 
