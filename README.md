@@ -103,7 +103,7 @@ For example, {A, B} ∧ {C, D} = {A ∩ C, A ∩ D, B ∩ C, B ∩ D} where A,
 B, C, D are character sets.
 
 Based on this definition, you need to implement the `computeNext` method
-which needs to compute `C`, use it to compute the transitions, and the
+which needs to compute `C`, use it to compute the transitions, and the next states by picking an element from each partition and deriving current regular expression w.r.t. the picked character.
 
 ## Part 3: Tests
 
