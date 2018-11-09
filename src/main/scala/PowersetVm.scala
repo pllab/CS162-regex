@@ -1,8 +1,8 @@
 package edu.ucsb.cs.cs162.regex.vm
 
 import edu.ucsb.cs.cs162.regex.parse_tree._
-import edu.ucsb.cs.cs162.regex.range_set._
-import edu.ucsb.cs.cs162.regex.regex._
+import edu.ucsb.cs.cs162.range_set._
+import edu.ucsb.cs.cs162.regex._
 
 // A virtual machine that uses Thompson's powerset strategy to implement a
 // non-backtracking algorithm for regular expression matching.
@@ -32,6 +32,8 @@ class PowersetVm(program: Program) extends VirtualMachine(program) {
     // Return the result of matching the current string position on all the
     // given threads.
     val matchStringPosition: (Set[Thread], Char) => Set[Thread] = ???
+
+    ???
   }
 
   // A thread of execution for the VM, where 'pc' is the program counter,

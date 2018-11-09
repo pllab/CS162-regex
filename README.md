@@ -16,8 +16,6 @@ In this assignment, you will be implementing:
  - `src/main/scala/VirtualMachine.scala` - Contains the instruction case classes and objects, and an abstract vm interface. Do not alter this.
  - `src/main/scala/RecursiveBacktrackingVm.scala` - Contains the recursive backtracking VM implemented in class. You can use it to check what your compiler does while developing it, or that your VM behaves correctly.
 
-### Note: This repository will be updated after class on Thursday (Nov 8th) to add skeleton code for Part 2 of the assignment.
--You will be implementing a virtual machine that uses Thompson's powerset strategy to implement a non-backtracking algorithm fo:
 ## Part 1: The Regex to NFA Compiler
 
 The first part of the assignment is to implement the compiler. Your compiler will take a `Regex`, and produce a `Program`, a sequence of `Instruction`s. Fill out the skeleton method in Compiler.scala.
