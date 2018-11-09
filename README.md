@@ -12,11 +12,12 @@ In this assignment, you will be implementing:
 ## Project Structure
 
  - `src/main/scala/Compiler.scala` - Contains the skeleton of the compiler. Your code goes here.
+ - `src/main/scala/PowersetVm.scala` - Contains the skeleton of the powerset VM.
  - `src/main/scala/VirtualMachine.scala` - Contains the instruction case classes and objects, and an abstract vm interface. Do not alter this.
- - `src/main/scala/RecursiveBacktrackingVm.scala` - Contains the recursive backtracking VM implemented in class. You can use it to check what your compiler does while developing it.
+ - `src/main/scala/RecursiveBacktrackingVm.scala` - Contains the recursive backtracking VM implemented in class. You can use it to check what your compiler does while developing it, or that your VM behaves correctly.
 
 ### Note: This repository will be updated after class on Thursday (Nov 8th) to add skeleton code for Part 2 of the assignment.
-
+-You will be implementing a virtual machine that uses Thompson's powerset strategy to implement a non-backtracking algorithm fo:
 ## Part 1: The Regex to NFA Compiler
 
 The first part of the assignment is to implement the compiler. Your compiler will take a `Regex`, and produce a `Program`, a sequence of `Instruction`s. Fill out the skeleton method in Compiler.scala.
@@ -37,8 +38,17 @@ For each case of `Regex`, your compiler will return a sequence of instructions:
 
 ## Part 2: Powerset VM
 
-You will be implementing a virtual machine that uses Thompson's powerset strategy to implement a non-backtracking algorithm for regular expression matching.
-The VM will be described in class on Nov 8th, and this description and the repo will be updated after the lecture. We encourage you to start work on part 1 as soon as possible.
+You will be implementing a virtual machine that uses Thompson's powerset strategy to implement a non-backtracking algorithm for regular expression matching, as described in class.
+
+The skeleton code is in `src/main/scala/PowersetVm.scala`. You will need to implement the following methods:
+ - `runUntilMatchOrAccept` - A helper method that runs threads until they reach a match or an accept.
+ - `compact` - Takes a set of threads, and and removes those at the same program counter, but with lower priority.
+ - `matchStringPosition` - Takes a set of threads and a character, keeps only those that match the current character
+ - `eval` - the main method that evaluates a program w.r.t a string, returning a parse tree if the string is successfully parsed.
+
+Hints:
+ - There must be at most one living thread at the end of a program.
+ - Remember to read scala docs for Seq and Set - many useful methods for traversing, filtering and grouping can be found there.
 
 ## Part 3: The Tests
 
@@ -53,6 +63,7 @@ Ultimately, the quality of the tests is as important as the quantity. You
 need to test:
  - The compiler you implemented should be thoroughly tested. Put those tests in `CompilerSpec.scala.`. Make sure you cover the most basic cases as well as the more complicated and weird ones. 
  - The VM you implemented - make sure it behaves correctly for base cases, more complex cases and edge cases you can think of. Put these tests in `PowersetVmSpec.scala`, once it becomes available in the repo.
+ - Make sure you test that your parse results are correct, not just that the string was successfully parsed
 
 You can keep the tests you wrote for the previous assignment but you
 will not be graded on those for this assignment. For grading purposes,
