@@ -3,7 +3,7 @@ package edu.ucsb.cs.cs162.regex.vm.compiler
 import org.scalatest._
 import edu.ucsb.cs.cs162.regex._
 
-class DeriveSpec extends FlatSpec with Matchers {
+class CompileSpec extends FlatSpec with Matchers {
   //----------------------------------------------------------------------------
   // Fixtures and helpers.
   // ---------------------------------------------------------------------------
