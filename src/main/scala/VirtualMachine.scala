@@ -1,7 +1,7 @@
-package edu.ucs.cs.cs162.regex.vm
+package edu.ucsb.cs.cs162.regex.vm
 
-import edu.ucs.cs.cs162.range_set._
-import edu.ucs.cs.cs162.regex.parse_tree._
+import edu.ucsb.cs.cs162.range_set._
+import edu.ucsb.cs.cs162.regex.parse_tree._
 
 object `package` {
   type Program = IndexedSeq[Instruction]
