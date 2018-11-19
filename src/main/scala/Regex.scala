@@ -22,6 +22,7 @@ sealed abstract class Regex {
     case KleeneStar(re1) => s"(${re1.toString})*"
     case Complement(re1) => s"!(${re1.toString})"
     case Intersect(re1, re2) => s"(${re1.toString} & ${re2.toString})"
+    case Capture(name, re) => s"""(${re.toString}).capture("${name}")"""
   }
 
   // Output the expression's structure as a tree.
@@ -59,6 +60,9 @@ sealed abstract class Regex {
       case Intersect(re1, re2) => {
         "Intersect\n" + prefix + tee + asciiTree(re1, prefix + bar) +
         prefix + cap + asciiTree(re2, prefix + end)
+      }
+      case Capture(name, re) => {
+        s"Capture $name\n" + prefix + cap + asciiTree(re, prefix + end)
       }
     }
   }

@@ -20,6 +20,10 @@ object DerivativeAnalysis {
   // state and is approximately minimal.
   def analyze(re: Regex): Dfa[Regex] = ???
 
+  // Return the set of all possible derivatives of 're'.
+  def derivativeClosure(re: Regex): Set[Regex] =
+    computeDfa(todo = Set(re), visitedStates = Set(), transitions = Map())._1
+
   //----------------------------------------------------------------------------
   // Private details.
   //----------------------------------------------------------------------------

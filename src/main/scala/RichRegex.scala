@@ -130,6 +130,7 @@ object `package` {
       case Union(re1, re2) => re1.nullable | re2.nullable
       case Complement(re1) => if (re1.nullable == ε) ∅ else ε
       case Intersect(re1, re2) => re1.nullable & re2.nullable
+      case Capture(_, child) => child.nullable
     }
 
     // Returns true iff the language recognized by 're' is empty.
@@ -171,6 +172,11 @@ object `package` {
       case (KleeneStar(re1), KleeneStar(reA)) => re1 lessThanEq reA
       case (_: KleeneStar, _) => true
       case (_, _: KleeneStar) => false
+      case (Capture(name1, re1), Capture(name2, re2)) => {
+        (name1 <= name2) && (re1 lessThanEq re2)
+      }
+      case (_: Capture, _) => true
+      case (_, _: Capture) => false
       case (Complement(re1), Complement(reA)) => re1 lessThanEq reA
       case (_: Complement, _) => true
       case (_, _: Complement) => false
@@ -180,6 +186,59 @@ object `package` {
       }
       case (_: Intersect, _) => true
       case (_, _: Intersect) => false
+    }
+
+    // Returns the expression that recognizes the reverse language of re. Note
+    // that 'prefer{Left, Lazy}' flags are lost in the process, as we assume
+    // that we won't be parsing reversed expressions.
+    def reverse: Regex = re match {
+      case `ε` | `∅` | _: Chars => re
+      case Concatenate(re1, re2) => re2.reverse ~ re1.reverse
+      case Union(re1, re2) => re1.reverse | re2.reverse
+      case KleeneStar(re1) => re1.reverse.*
+      case Complement(re1) => !re1.reverse
+      case Intersect(re1, re2) => re1.reverse & re2.reverse
+      case cap @ Capture(name, re1) => re1.reverse.capture(name)
+    }
+
+    // Returns the set of words that are strict suffixes of words in 're'.
+    def strictSuffix: Regex = {
+      val star = re.isInstanceOf[KleeneStar]
+      DerivativeAnalysis.derivativeClosure(re).foldLeft(∅ : Regex)(
+        (acc, deriv) => if (re == deriv && !star) acc else acc | deriv
+      )
+    }
+
+    // Returns the set of words that are strict prefixes of words in 're'.
+    def strictPrefix: Regex =
+      re.reverse.strictSuffix.reverse
+
+    // Returns the set of words that are suffixes of words in 're'; includes all
+    // words in 're'.
+    def suffix: Regex =
+      re.strictSuffix | re
+
+    // Returns the set of words that are prefixes of words in 're'; includes all
+    // words in 're'.
+    def prefix: Regex =
+      re.strictPrefix | re
+
+    // Returns the set of words that are substrings of words in 're'.
+    def substrings: Regex =
+      re.suffix.prefix
+
+    // Returns the overlap language of 're' and 'other', i.e. re.overlap(other)
+    // = { w1~w2~w3 | w1, w1~w2 ∈ re; w2~w3, w3 ∈ other; w2 ≠ ε }
+    def overlap(other: Regex): Regex = {
+      val containsW1 = re.strictPrefix & re
+      val containsW2 = re.suffix & other.prefix & !ε
+      val containsW3 = other.strictSuffix & other
+
+      val w1w2 = (containsW1 ~ containsW2) & re
+      val w2 = w1w2.suffix & containsW2
+      val w2w3 = (w2 ~ containsW3) & other
+
+      (w1w2 ~ containsW3) & (containsW1 ~ w2w3)
     }
 
     // Determines if 're' is unambiguous or not. If so, returns None. Otherwise,
