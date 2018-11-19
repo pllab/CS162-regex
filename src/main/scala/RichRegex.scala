@@ -181,5 +181,11 @@ object `package` {
       case (_: Intersect, _) => true
       case (_, _: Intersect) => false
     }
+
+    // Determines if 're' is unambiguous or not. If so, returns None. Otherwise,
+    // returns the ambiguous sub-expression (the first one for which ambiguity
+    // is detected, if there is more than one) and a string that exposes the
+    // ambiguity of that sub-expression.
+    def unambiguous: Option[(Regex, String)] = ???
   }
 }

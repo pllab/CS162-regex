@@ -21,6 +21,10 @@ case class Dfa[State](delta: Transitions[State], init: State, fin: Set[State]) {
   def matches(str: String): Boolean =
     fin.contains(trace(init, str))
 
+  // Returns a string that causes an arbitrary but non-looping path from the
+  // init state to a final state, if such a path exists.
+  def getString: Option[String] = ???
+
   //----------------------------------------------------------------------------
   // Private details.
   //----------------------------------------------------------------------------
