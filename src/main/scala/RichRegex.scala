@@ -188,9 +188,7 @@ object `package` {
       case (_, _: Intersect) => false
     }
 
-    // Returns the expression that recognizes the reverse language of re. Note
-    // that 'prefer{Left, Lazy}' flags are lost in the process, as we assume
-    // that we won't be parsing reversed expressions.
+    // Returns the expression that recognizes the reverse language of re.
     def reverse: Regex = re match {
       case `ε` | `∅` | _: Chars => re
       case Concatenate(re1, re2) => re2.reverse ~ re1.reverse
