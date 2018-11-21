@@ -9,15 +9,17 @@ class DfaSpec extends FlatSpec with Matchers with OptionValues {
 
   behavior of "Dfa.getString"
 
-  it should "return None if the DFA's language is empty 1" {
-    val dfa = Dfa(Map(∅ → Seq(!CharSet() → ∅)), ∅, Set.empty)
+  it should "return None if the DFA's language is empty 1" in {
+    val δ = Map(∅ → Seq(!CharSet() → ∅))
+    val dfa = Dfa(δ, ∅, Set.empty)
     dfa.getString shouldEqual None
   }
 
   // more tests...
 
-  it should "return a string that the DFA recognizes if the DFA's language is not empty 1" {
-    val dfa = Dfa(Map(ε → Seq(!CharSet() → ∅), ∅ → Seq(!CharSet() → ∅)), ε, Set[Regex](ε))
+  it should "return a string that the DFA recognizes if the DFA's language is not empty 1" in {
+    val δ: Transitions[Regex] = Map(ε → Seq(!CharSet() → ∅), ∅ → Seq(!CharSet() → ∅))
+    val dfa = Dfa(δ, ε, Set[Regex](ε))
     val s = dfa.getString.value
     dfa matches s shouldEqual true
   }

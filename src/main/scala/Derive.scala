@@ -31,5 +31,6 @@ object Derive {
     case rek @ KleeneStar(re1) => derive(re1, char) ~ rek
     case Complement(re1) => !derive(re1, char)
     case Intersect(re1, re2) => derive(re1, char) & derive(re2, char)
+    case Capture(_, r) ⇒ derive(r, char)
   }
 }

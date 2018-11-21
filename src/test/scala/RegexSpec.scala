@@ -1,6 +1,7 @@
 package edu.ucsb.cs.cs162.regex
 
 import org.scalatest._
+import edu.ucsb.cs.cs162.regex.derivative._
 
 class RegexSpec extends FlatSpec with Matchers with OptionValues {
   //----------------------------------------------------------------------------
