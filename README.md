@@ -6,8 +6,9 @@
 We went over ambiguous regular expressions and presented a type system
 to check whether a regular expression is ambiguous. In this assignment
 you will implement:
-    1. The ambiguity type system we talked about in class
-    2. Useful error messages for ambiguous regexes consisting of
+
+  1. The ambiguity type system we talked about in class
+  2. Useful error messages for ambiguous regexes consisting of
         - the subexpression that is the root cause of ambiguity (first
          one encountered if there are more than one).
         - a string that exposes the ambiguity in the subexpression.
