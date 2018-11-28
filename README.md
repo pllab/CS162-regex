@@ -94,7 +94,7 @@ overlap operator that we discussed in class.
 
 Note that ambiguity matters only for parsing, and complement and
 intersection are non-constructive (i.e., cannot contain capture
-groups) hence not used in parsing. So, you we don't have any typing
+groups) hence not used in parsing. So, we don't have any typing
 rules for them.
 
 You need to implement a type checker that uses the typing rules above
