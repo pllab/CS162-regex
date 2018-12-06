@@ -201,9 +201,8 @@ object `package` {
 
     // Returns the set of words that are strict suffixes of words in 're'.
     def strictSuffix: Regex = {
-      val star = re.isInstanceOf[KleeneStar]
       DerivativeAnalysis.derivativeClosure(re).foldLeft(∅ : Regex)(
-        (acc, deriv) => if (re == deriv && !star) acc else acc | deriv
+        (acc, deriv) => acc | deriv
       )
     }
 
