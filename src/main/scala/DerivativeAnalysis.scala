@@ -6,6 +6,7 @@ package edu.ucsb.cs.cs162.regex.derivative
 import edu.ucsb.cs.cs162.dfa._
 import edu.ucsb.cs.cs162.range_set._
 import edu.ucsb.cs.cs162.regex._
+import scala.language.postfixOps
 
 object DerivativeAnalysis {
   import Derive._
@@ -23,7 +24,9 @@ object DerivativeAnalysis {
   // Return the set of all possible derivatives of 're'. (not including 're'
   // unless 're is a derivative of itself').
   def derivativeClosure(re: Regex): Set[Regex] =
-    computeDfa(todo = Set(), visitedStates = Set(), transitions = Map())._1
+    computeDfa(todo = Set(re), visitedStates = Set(), transitions = Map())._2 flatMap {
+      case (_, transitions) ⇒ transitions.map(_._2)
+    } toSet
 
   //----------------------------------------------------------------------------
   // Private details.
